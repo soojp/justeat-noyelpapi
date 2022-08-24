@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import Container from "react-bootstrap/Container";
-import Table from "react-bootstrap/Table";
+import Card from "react-bootstrap/Card";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 const PreferenceList = ({ setPreferences, preferences }) => {
@@ -32,30 +34,27 @@ const PreferenceList = ({ setPreferences, preferences }) => {
 
   return (
     <Container>
-      <Table bordered className="bg-dark text-white">
-        <thead>
-          <tr>
-            <td>Zipcode</td>
-            <td>Distance</td>
-            <td>Cuisine(s)</td>
-            <td>Actions</td>
-          </tr>
-        </thead>
-        {preferences.map((preference) => (
-          <tr key={preference._id} className="text-center">
-            <td>{preference.zipcode}</td>
-            <td>{preference.distance}</td>
-            <td>{preference.cuisine.join(", ")}</td>
-            <td>
+      {preferences.map((preference, index) => (
+        <Card key={index} className="m-3">
+          <Card.Header>Preference {index + 1}</Card.Header>
+          <Card.Body>
+            <Card.Title>Cuisine(s): {preference.cuisine.join(", ")}</Card.Title>
+            <Card.Text>
+              {preference.distance} miles away from {preference.zipcode}
+            </Card.Text>
+          </Card.Body>
+          <Row className="text-center p-2">
+            <Col>
               <NavLink to={`/edit/${preference._id}`}>Edit</NavLink>
-              <span> | </span>
+            </Col>
+            <Col>
               <Button onClick={(e) => deletePreference(preference._id)}>
                 Delete
               </Button>
-            </td>
-          </tr>
-        ))}
-      </Table>
+            </Col>
+          </Row>
+        </Card>
+      ))}
     </Container>
   );
 };
