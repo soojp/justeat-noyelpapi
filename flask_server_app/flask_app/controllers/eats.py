@@ -1,16 +1,8 @@
 from flask import jsonify, flash, Flask
 from flask_app import app
 from flask_app.models.eat import PreferenceModel
-from flask_cors import CORS
-
 # from dotenv import load_dotenv
 # load_dotenv()
-
-# Do we need a route for dashboard? 
-
-app = Flask(__name__)
-CORS(app)
-
 
 @app.route('/api/preference/all')
 def get_all_preferences(data):

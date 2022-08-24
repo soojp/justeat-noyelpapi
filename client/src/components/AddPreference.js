@@ -13,7 +13,7 @@ const AddPreference = () => {
     console.log(preference);
     //upload the database (change if needed)
     axios
-      .post(`http://localhost:5000/api/preference/add`, preference)
+      .post(`http://localhost:5000/api/preference/add`, preference , {headers: {'Content-Type': 'application/json', 'accept' : 'application/json' }})
       .then((res) => {
         console.log(res.data);
         navigate("/");
