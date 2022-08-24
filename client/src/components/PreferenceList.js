@@ -10,7 +10,7 @@ import Button from "react-bootstrap/Button";
 const PreferenceList = ({ setPreferences, preferences }) => {
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/preferences`)
+      .get(`http://localhost:5000/api/preference/all`)
       .then((res) => {
         setPreferences(res.data);
       })
@@ -25,7 +25,7 @@ const PreferenceList = ({ setPreferences, preferences }) => {
 
   const deletePreference = (preferenceId) => {
     axios
-      .delete(`http://localhost:8000/api/preference/${preferenceId}`)
+      .delete(`http://localhost:5000/api/preference/delete/${preferenceId}`)
       .then((res) => {
         removeFromDom(preferenceId);
       })

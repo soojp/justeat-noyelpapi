@@ -11,7 +11,7 @@ const EditPreference = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/preference/${id}`)
+      .get(`http://localhost:5000/api/preference/${id}`)
       .then((res) => {
         setCurrentPreference(res.data);
       })
@@ -21,7 +21,7 @@ const EditPreference = () => {
   const submit = (preference) => {
     console.log(id);
     axios
-      .put(`http://localhost:8000/api/preference/${id}`, preference)
+      .put(`http://localhost:5000/api/preference/update/${id}`, preference)
       .then((res) => {
         console.log(res.data);
         navigate("/");

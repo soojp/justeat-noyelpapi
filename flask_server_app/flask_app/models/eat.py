@@ -16,6 +16,12 @@ class PreferenceModel():
         self.updated_at = data['updated_at']
 
     @classmethod
+    def get_all_preferences(data):
+        if data.preferences is None: 
+            data.preferences = PreferenceModel.view_all ({data.id}, jsonify=True)
+        return data.preferences
+
+    @classmethod
     def add_preference(cls,data):
         query = "INSERT INTO preferences (cuisine, zipcode, distance) VALUES (%(cuisine)s, %(zipcode)s, %(distance)s);"
         return MySQLConnection(cls.db).query_db(query,data)
