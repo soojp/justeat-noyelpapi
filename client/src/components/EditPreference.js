@@ -7,11 +7,11 @@ import Container from "react-bootstrap/Container";
 const EditPreference = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [currentPreference, setCurrentPreference] = useState(null);
+  const [currentPreference, setCurrentPreference] = useState();
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/preference/${id}`)
+      .get(`http://localhost:5001/api/preference/${id}`)
       .then((res) => {
         setCurrentPreference(res.data);
       })
@@ -21,7 +21,7 @@ const EditPreference = () => {
   const submit = (preference) => {
     console.log(id);
     axios
-      .put(`http://localhost:5000/api/preference/update/${id}`, preference)
+      .put(`http://localhost:5001/api/preference/update/${id}`, preference)
       .then((res) => {
         console.log(res.data);
         navigate("/");
@@ -32,12 +32,10 @@ const EditPreference = () => {
   };
 
   return (
-    currentPreference && (
-      <Container>
-        <PreferenceForm submit={submit} currentPreference={currentPreference} />
-      </Container>
+    <Container>
+      <PreferenceForm submit={submit} currentPreference={currentPreference} />
+    </Container>
     )
-  );
 };
 
 export default EditPreference;

@@ -48,7 +48,7 @@ const PreferenceForm = ({ submit, currentPreference }) => {
     let payload = { ...preference, cuisine: rows };
     submit(payload);
   };
-
+console.log("rows", rows)
   return (
     <Form className="m-3" onSubmit={handleSubmit}>
       <Row>
