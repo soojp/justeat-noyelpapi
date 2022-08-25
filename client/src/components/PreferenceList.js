@@ -40,7 +40,7 @@ const PreferenceList = ({ setPreferences, preferences }) => {
         <Card key={index} className="m-3">
           <Card.Header>Preference {index + 1}</Card.Header>
           <Card.Body>
-            <Card.Title>Cuisine(s): {preference.cuisine}</Card.Title>
+            <Card.Title>Cuisine(s): {preference.cuisine.join(", ")}</Card.Title>
             <Card.Text>
               {preference.distance} miles away from {preference.zipcode}
             </Card.Text>

@@ -12,7 +12,7 @@ from flask_app.models.eat import PreferenceModel
 @app.route('/api/preference/<int:id>')
 def get_by_id(id):
     item = PreferenceModel.get_by_id(id)
-    return jsonify(item), 200
+    return jsonify(item.to_json()), 200
 
 @app.route('/api/preference/all')
 def get_all_preferences():
@@ -30,15 +30,14 @@ def add_preference():
             return jsonify(data.to_json()), 200  
     return jsonify({}), 422
 
-@app.route('/api/preference/update/<int:id>', methods=['POST'])
+@app.route('/api/preference/update/<int:id>', methods=['PUT'])
 def update_preference(id):
-    item = PreferenceModel.get_by_id(id)
-
-    if item is not None and PreferenceModel.is_valid(id):
-        updated_item = PreferenceModel.update_preference(item, id)
+    item = request.get_json()
+    print(item)
+    if item is not None :
+        updated_item = PreferenceModel.update_preference(item)
         if updated_item:
-            return jsonify(updated_item), 200
-        
+            return jsonify(updated_item.to_json()), 200
     return jsonify({}), 422
 
 @app.route('/api/preference/delete/<int:id>', methods=['DELETE'])

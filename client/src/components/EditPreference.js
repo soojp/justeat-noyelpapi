@@ -14,6 +14,7 @@ const EditPreference = () => {
       .get(`http://localhost:5001/api/preference/${id}`)
       .then((res) => {
         setCurrentPreference(res.data);
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, [id]);
@@ -32,10 +33,14 @@ const EditPreference = () => {
   };
 
   return (
-    <Container>
-      <PreferenceForm submit={submit} currentPreference={currentPreference} />
-    </Container>
-    )
+    
+      <Container>
+        {currentPreference &&
+        <PreferenceForm submit={submit} currentPreference={currentPreference} />
+        }
+      </Container> 
+    
+  );
 };
 
 export default EditPreference;

@@ -28,10 +28,11 @@ const PreferenceForm = ({ submit, currentPreference }) => {
   };
 
   //how to save the cuisine row data
-  let handleRowChange = (i, e) => {
+  let handleRowChange = (i,e) => {
     let newRows = [...rows];
     newRows[i] = e.target.value;
     setRows(newRows);
+
   };
 
   //how to save the updated form
