@@ -38,7 +38,7 @@ function App() {
             }
           />
           <Route path="/new" element={<AddPreference />} />
-          <Route path="/edit/:id" element={<EditPreference />} />
+          <Route path="/preference/edit/:id" element={<EditPreference />} />
         </Routes>
       </Container>
     </BrowserRouter>

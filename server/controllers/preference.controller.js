@@ -41,7 +41,6 @@ module.exports = {
       });
   },
   updatePreference: (req, res) => {
-    console.log(`updating --backend ${req.params.id}`);
     Preference.findOneAndUpdate({ _id: req.params.id }, req.body, {
       new: true,
       runValidators: true,
